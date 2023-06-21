@@ -11,7 +11,7 @@ public class Bot {
 
 	public static void main(String[] args) throws LoginException {
 
-		JDA bot = JDABuilder.createDefault("MTExOTYyOTM2OTMzNDMxNzA2Ng.GBMBxQ.6esv0aZZLwPrRitsQGtnWothtb0Hk7rnjbGuBo")
+		JDA bot = JDABuilder.createDefault("token")
 				.setActivity(Activity.listening("música"))
 				.build();
 		
