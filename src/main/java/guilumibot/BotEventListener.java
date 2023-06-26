@@ -1,48 +1,42 @@
 package guilumibot;
 
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.events.session.ReadyEvent;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BotEventListener extends ListenerAdapter {
-	String prefix = "!";
+
+    private List<ExecutorComando> commands = new ArrayList<>();
+
     @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
-        if (!event.getAuthor().isBot()) {
-            // Lógica para lidar com a mensagem recebida
-            String mensagem = event.getMessage().getContentRaw();
-            
-            lidarComComando(mensagem);
-            
-            // ... outras ações a serem realizadas com a mensagem
-        }
-     
-    }
-
-    public void lidarComComando(String content) {
-		/* String content = message.getContentRaw(); */
-        if (content.startsWith(prefix)) {
-            String[] args = content.substring(prefix.length()).split("\\s+");
-            String comando = args[0].toLowerCase();
-
-            switch (comando) {
-                case "play":
-                    // Lógica para executar o comando "play"
-                	System.out.println("play");
-                    break;
-                case "pause":
-                    // Lógica para executar o comando "pause"
-                	System.out.println("pause");
-                    break;
-                case "add":
-                    // Lógica para executar o comando "add"
-                	System.out.println("add");
-                    break;
-                // Outros comandos...
-                default:
-                    // Comando não reconhecido, pode exibir uma mensagem de erro
-                    break;
+    public void onReady(ReadyEvent event) {
+        for(Guild guild : event.getJDA().getGuilds()) {
+            for(ExecutorComando command : commands) {
+                if(command.getOptions() == null) {
+                    guild.upsertCommand(command.getName(), command.getDescription()).queue();
+                } else {
+                    guild.upsertCommand(command.getName(), command.getDescription()).addOptions(command.getOptions()).queue();
+                }
             }
         }
     }
-    // Outros métodos para lidar com diferentes tipos de eventos
+
+    @Override
+    public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
+        for(ExecutorComando command : commands) {
+            if(command.getName().equals(event.getName())) {
+                command.execute(event);
+                return;
+            }
+        }
+    }
+
+    public void add(ExecutorComando command) {
+        commands.add(command);
+    }
 }
