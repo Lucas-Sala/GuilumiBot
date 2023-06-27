@@ -58,7 +58,7 @@ public class ComandoPlay  implements ExecutorComando {
             name = "ytsearch:" + name;
         }
 
-        PlayerManager playerManager = PlayerManager.get();
+        PlayerManager playerManager = PlayerManager.getPlayerManager();
         event.reply("Playing").queue();
         playerManager.play(event.getGuild(), name);
     }

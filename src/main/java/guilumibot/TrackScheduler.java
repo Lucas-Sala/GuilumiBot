@@ -41,11 +41,11 @@ public class TrackScheduler extends AudioEventAdapter { //Armazena e gerencia a 
         return queue;
     }
 
-    public boolean isRepeat() {
-        return isRepeat;
-    }
-
-    public void setRepeat(boolean repeat) {
-        isRepeat = repeat;
-    }
+//    public boolean isRepeat() {
+//        return isRepeat;
+//    }
+//
+//    public void setRepeat(boolean repeat) {
+//        isRepeat = repeat;
+//    }
 }

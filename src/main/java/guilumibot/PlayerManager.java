@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class PlayerManager {
 
-    private static PlayerManager INSTANCE;
+    private static PlayerManager instance;
     private Map<Long, GuildMusicManager> guildMusicManagers = new HashMap<>();
     private AudioPlayerManager audioPlayerManager = new DefaultAudioPlayerManager();
 
@@ -23,11 +23,11 @@ public class PlayerManager {
         AudioSourceManagers.registerLocalSource(audioPlayerManager);
     }
 
-    public static PlayerManager get() {
-        if(INSTANCE == null) {
-            INSTANCE = new PlayerManager();
+    public static PlayerManager getPlayerManager() {
+        if(instance == null) {
+            instance = new PlayerManager();
         }
-        return INSTANCE;
+        return instance;
     }
 
     public GuildMusicManager getGuildMusicManager(Guild guild) {

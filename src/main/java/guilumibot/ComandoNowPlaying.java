@@ -48,7 +48,7 @@ public class ComandoNowPlaying implements ExecutorComando {
             return;
         }
 
-        GuildMusicManager guildMusicManager = PlayerManager.get().getGuildMusicManager(event.getGuild());
+        GuildMusicManager guildMusicManager = PlayerManager.getPlayerManager().getGuildMusicManager(event.getGuild());
         if(guildMusicManager.getTrackScheduler().getPlayer().getPlayingTrack() == null) {
             event.reply("I am not playing anything").queue();
             return;
