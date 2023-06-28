@@ -7,7 +7,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class Bot extends ListenerAdapter {
-	static final String token = "MTExOTYyOTM2OTMzNDMxNzA2Ng.G0H8Pn.S6i7ae9dHONCoTiUmdRU_EAGyGZbjG6d6JVaz4";
+	static final String token = "token";
 	PlayerManager playerManager = new PlayerManager();
 
 	public static void main(String[] args) {
