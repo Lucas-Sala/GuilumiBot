@@ -15,7 +15,7 @@ public class ComandoSkip implements ExecutorComando {
 
     @Override
     public String getDescription() {
-        return "Will skip the current song";
+        return "Pula para a próxima música da fila.";
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ComandoSkip implements ExecutorComando {
         GuildVoiceState memberVoiceState = member.getVoiceState();
 
         if(!memberVoiceState.inAudioChannel()) {
-            event.reply("You need to be in a voice channel").queue();
+            event.reply("Você precisa estar em um canal de voz.").queue();
             return;
         }
 
@@ -37,17 +37,17 @@ public class ComandoSkip implements ExecutorComando {
         GuildVoiceState selfVoiceState = self.getVoiceState();
 
         if(!selfVoiceState.inAudioChannel()) {
-            event.reply("I am not in an audio channel").queue();
+            event.reply("Eu não estou em um canal de voz.").queue();
             return;
         }
 
         if(selfVoiceState.getChannel() != memberVoiceState.getChannel()) {
-            event.reply("You are not in the same channel as me").queue();
+            event.reply("Nós não estamos no mesmo canal de voz.").queue();
             return;
         }
 
         GuildMusicManager guildMusicManager = PlayerManager.getPlayerManager().getGuildMusicManager(event.getGuild());
         guildMusicManager.getTrackScheduler().getPlayer().stopTrack();
-        event.reply("Skipped").queue();
+        event.reply("Próxima música da fila.").queue();
     }
 }

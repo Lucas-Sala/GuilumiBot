@@ -19,13 +19,13 @@ public class ComandoPlay  implements ExecutorComando {
 
     @Override
     public String getDescription() {
-        return "Will play a song";
+        return "Reproduz uma música ou a adiciona na fila de reprodução.";
     }
 
     @Override
     public List<OptionData> getOptions() {
         List<OptionData> options = new ArrayList<>();
-        options.add(new OptionData(OptionType.STRING, "name", "Name of the song to play", true));
+        options.add(new OptionData(OptionType.STRING, "nome", "Nome ou link da música a tocar", true));
         return options;
     }
 
@@ -35,7 +35,7 @@ public class ComandoPlay  implements ExecutorComando {
         GuildVoiceState memberVoiceState = member.getVoiceState();
 
         if(!memberVoiceState.inAudioChannel()) {
-            event.reply("You need to be in a voice channel").queue();
+            event.reply("Você precisa estar em um canal de voz.").queue();
             return;
         }
 
@@ -46,12 +46,12 @@ public class ComandoPlay  implements ExecutorComando {
             event.getGuild().getAudioManager().openAudioConnection(memberVoiceState.getChannel());
         } else {
             if(selfVoiceState.getChannel() != memberVoiceState.getChannel()) {
-                event.reply("You need to be in the same channel as me").queue();
+                event.reply("Nós não estamos no mesmo canal de voz.").queue();
                 return;
             }
         }
 
-        String name = event.getOption("name").getAsString();
+        String name = event.getOption("nome").getAsString();
         try {
             new URI(name);
         } catch (URISyntaxException e) {
@@ -59,7 +59,7 @@ public class ComandoPlay  implements ExecutorComando {
         }
 
         PlayerManager playerManager = PlayerManager.getPlayerManager();
-        event.reply("Playing").queue();
+        event.reply("Tocando").queue();
         playerManager.play(event.getGuild(), name);
     }
 }

@@ -1,31 +1,31 @@
 package guilumibot;
 
+import java.util.List;
+
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 
-import java.util.List;
-
-public class ComandoStop implements ExecutorComando {
+public class ComandoResume implements ExecutorComando {
     @Override
     public String getName() {
-        return "stop";
+        return "resume";
     }
 
     @Override
     public String getDescription() {
-        return "Para a reprodução.";
+        return "Retoma a reprodução da música pausada.";
     }
 
     @Override
     public List<OptionData> getOptions() {
-        return null;
+       return null;
     }
 
     @Override
     public void execute(SlashCommandInteractionEvent event) {
-        Member member = event.getMember();
+    	Member member = event.getMember();
         GuildVoiceState memberVoiceState = member.getVoiceState();
 
         if(!memberVoiceState.inAudioChannel()) {
@@ -45,11 +45,16 @@ public class ComandoStop implements ExecutorComando {
             event.reply("Nós não estamos no mesmo canal de voz.").queue();
             return;
         }
-
+     
         GuildMusicManager guildMusicManager = PlayerManager.getPlayerManager().getGuildMusicManager(event.getGuild());
         TrackScheduler trackScheduler = guildMusicManager.getTrackScheduler();
-        trackScheduler.getQueue().clear();
-        trackScheduler.getPlayer().stopTrack();
-        event.reply("Parado").queue();
+        
+        if (trackScheduler.getPlayer().isPaused()){
+        	trackScheduler.getPlayer().setPaused(false);
+        	event.reply("Retomando a reprodução música.").queue();
+        }else {
+        	event.reply("O reprodutor não está pausado.").queue();
+        }
+       
     }
 }
