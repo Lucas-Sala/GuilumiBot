@@ -1,0 +1,15 @@
+guilumibot/ComandoPlay.class
+guilumibot/AudioPlayerSendHandler.class
+guilumibot/ExecutorComando.class
+guilumibot/GuildMusicManager.class
+guilumibot/BotEventListener.class
+guilumibot/ComandoSkip.class
+guilumibot/ComandoQueue.class
+guilumibot/PlayerManager.class
+guilumibot/ComandoResume.class
+guilumibot/ComandoPause.class
+guilumibot/ComandoNowPlaying.class
+guilumibot/ComandoStop.class
+guilumibot/PlayerManager$1.class
+guilumibot/Bot.class
+guilumibot/TrackScheduler.class

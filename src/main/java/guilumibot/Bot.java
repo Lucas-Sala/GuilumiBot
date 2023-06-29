@@ -1,3 +1,11 @@
+/*
+ * guia de instalação:
+ * Execute no terminal o comando:
+ * 		- mvn clean install
+ */
+
+
+
 package guilumibot;
 
 import net.dv8tion.jda.api.JDA;
@@ -7,7 +15,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class Bot extends ListenerAdapter {
-	static final String token = "token";
+	static final String token = "MTExOTYyOTM2OTMzNDMxNzA2Ng.GxIhD6.5ilu9pGJRv_642SyKuemreriRDlcVaK9Gg1gaE";
 	PlayerManager playerManager = new PlayerManager();
 
 	public static void main(String[] args) {
