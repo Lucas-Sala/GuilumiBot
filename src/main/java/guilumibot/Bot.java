@@ -19,7 +19,7 @@ public class Bot extends ListenerAdapter {
     
     // Token de autenticação do bot.
     // Deve ser armazenado de forma segura, como em variáveis de ambiente.
-    static final String token = "Coloque o token";
+    static final String token = "Coloque o token aqui";
 
     // Instância do PlayerManager que lida com a reprodução de música
     PlayerManager playerManager = new PlayerManager();
