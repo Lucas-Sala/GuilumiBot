@@ -40,7 +40,8 @@ class AudioPlayerSendHandler implements AudioSendHandler { //Gerencia o envio de
 	@Nullable
 	@Override
 	public ByteBuffer provide20MsAudio () {
-		return buffer.flip();
+		buffer.flip();
+		return buffer;
 	}
 	@Override
 	public boolean isOpus() {
