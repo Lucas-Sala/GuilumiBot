@@ -1,1 +1,1 @@
-web: java -cp target/classes:target/dependency/* guilumibot.Bot
+worker: java -cp target/classes:target/dependency/* guilumibot.Bot
