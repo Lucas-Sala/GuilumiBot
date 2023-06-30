@@ -1,5 +1,4 @@
 /*
- * Guia de instalação:
  * Para instalar as dependências e compilar o projeto,
  * execute o seguinte comando no terminal:
  * 		- mvn clean install
@@ -11,18 +10,14 @@ package guilumibot;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
-// Definição da classe Bot, que estende ListenerAdapter, o que permite que a classe possa receber eventos do Discord
-public class Bot extends ListenerAdapter {
+// Definição da classe Bot
+public class Bot {
     
     // Token de autenticação do bot.
     // Deve ser armazenado de forma segura, como em variáveis de ambiente.
-    static final String token = "Coloque o token aqui";
-
-    // Instância do PlayerManager que lida com a reprodução de música
-    PlayerManager playerManager = new PlayerManager();
+    static final String token = "Cole aqui o token";
 
     // Método main, o ponto de entrada do programa
     public static void main(String[] args) {
@@ -37,7 +32,8 @@ public class Bot extends ListenerAdapter {
             // Criação de uma instância de BotEventListener para gerenciar comandos e eventos
             BotEventListener manager = new BotEventListener();
             
-            // Adiciona comandos ao gerenciador. Cada comando é provavelmente uma classe que lida com um comando específico
+            // Adiciona comandos ao gerenciador. 
+            // Cada comando é provavelmente uma classe que lida com um comando específico
             manager.add(new ComandoPlay()); // Lida com o comando de tocar música
             manager.add(new ComandoPause()); // Lida com o comando de pausar a música
             manager.add(new ComandoResume()); // Lida com o comando de retomar a música pausada
@@ -46,7 +42,8 @@ public class Bot extends ListenerAdapter {
             manager.add(new ComandoQueue()); // Lida com o comando de exibir a fila de músicas
             manager.add(new ComandoNowPlaying()); // Lida com o comando de exibir qual música está tocando
             
-            // Adiciona o gerenciador de eventos à instância JDA, permitindo que o bot responda aos comandos
+            // Adiciona o gerenciador de eventos à instância JDA, 
+            // permitindo que o bot responda aos comandos
             jda.addEventListener(manager);
         } catch (Exception e) {
             // Caso ocorra alguma exceção, ela é capturada e o stack trace é impresso.
