@@ -6,7 +6,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
-public class Bot extends ListenerAdapter {
+public class Bot{
 	static final String token = "token";
 	PlayerManager playerManager = new PlayerManager();
 
